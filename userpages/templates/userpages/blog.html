@@ -1,0 +1,17 @@
+{% extends 'userpages/base.html' %}
+
+{% block content %}
+
+
+    <h3>{{ blog.title }}</h3>
+    <div class="group-list w-50">
+    {% for post in posts %}
+        <div class="group-list-item">
+            <h4>{{ post.title }}</h4>
+            <p>{{ post.textContent }}</p>
+        </div>
+
+    {% endfor %}
+    </div>
+
+{% endblock %}

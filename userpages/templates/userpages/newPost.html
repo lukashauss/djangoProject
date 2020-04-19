@@ -1,0 +1,28 @@
+{% extends 'userpages/base.html' %}
+
+{% block content %}
+<head>
+                <meta charset="utf-8">
+                <title>CKEditor</title>
+                <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+</head>
+
+<div class="container-fluid">
+<form class="w-50" method="post">
+    <div class="form-group">
+        {% csrf_token %}
+        <label for="postText">Neuer Post:</label>
+        <textarea class="form-control" id="postTitle" rows="1" name="postTitle"></textarea>
+        <textarea name="editor1"></textarea>
+    <script>
+            CKEDITOR.replace( 'editor1' );
+    </script>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Veröffentlichen</button>
+    </div>
+</form>
+</div>
+
+
+{% endblock %}

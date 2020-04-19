@@ -1,0 +1,42 @@
+{% extends 'userpages/base.html' %}
+{% if user.is_authenticated %}
+{% block dropdownBlogs %}
+
+<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Meine Blogs
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% for personal in personalBlogs %}
+          <a class="dropdown-item" href="#">{{ personal.title }}</a>
+          {% endfor %}
+        </div>
+</li>
+
+{% endblock %}
+{% endif %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container-fluid px-2 w-75 float-left">
+
+
+    <div class="list-group list-group-flush">
+        <h4>All Blogs:</h4>
+        {% for blog in blogs %}
+            <a class="list-group-item list-group-item-action" href="{% url 'blogdetail' blog.id %}" >{{ blog.title }}</a>
+
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<div class="container-fluid px-2 float-right w-25 bg-light h-100 rounded">
+    <h5>Benutzer</h5>
+    <div class="list-group">
+        {% for user in users %}
+            <a class="list-group-item list-group-item-action" href="{% url 'account' user.id %}">{{ user.user }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'chess/chess.css' %}">
+
+</head>
+
+
+<h1>Chess</h1>
+<div class="chessContainer" id="chessContainer">
+{% for row in board2d %}
+    {% for col in row %}
+        <div class="boardField">
+           {{ col }}
+        </div>
+    {% endfor %}
+{% endfor %}
+</div>
+
+<script src="{% static 'chess/chess.js' %}"></script>

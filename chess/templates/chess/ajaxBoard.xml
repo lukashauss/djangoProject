@@ -1,0 +1,9 @@
+<div class="chessContainer" id="chessContainer">
+{% for row in board2d %}
+    {% for col in row %}
+        <div class="boardField">
+           {{ col }}
+        </div>
+    {% endfor %}
+{% endfor %}
+</div>

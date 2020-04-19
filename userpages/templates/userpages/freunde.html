@@ -1,0 +1,16 @@
+{% extends 'userpages/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="container-fluid px-2">
+    <h5>Freunde:</h5>
+    <div class="list-group w-50">
+        {% for friend in friends %}
+        <a class="list-group-item list-group-item-action" href="{% url 'account' friend.id %}">{{ friend.user }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

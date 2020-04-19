@@ -1,0 +1,73 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'userpages/style.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      </li>
+
+
+    {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'freunde' %}">Freunde</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="{% url 'mySite' %}">MySite</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'newPost' %}">Neuer Post</a>
+      </li>
+        {% block dropdownBlogs %}
+
+        {% endblock %}
+    </ul>
+
+      <form class="form-inline my-2 my-lg-0" method='POST', action='{% url 'logoutUser' %}'>
+        {% csrf_token %}
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="{% url 'signUpUser' %}">Registrieren</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" method="post", action="{% url 'loginUser' %}">
+        <div class="d-flex justify-content-end">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2 w-25" type="text" name="username" placeholder="Username">
+          <br>
+          <input class="form-control mr-sm-2 w-25" type="password" name="password" placeholder="Password">
+          <br>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+
+        </div>
+      </form>
+    </div>
+  </nav>
+      {% endif %}
+
+
+  <h2>{{ error }}</h2>
+  <h2>{{ success }}</h2>
+
+
+{% block content %}
+<h1>Haaaallllo</h1>
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

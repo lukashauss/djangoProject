@@ -1,0 +1,39 @@
+{% extends 'userpages/base.html' %}
+
+{% block content %}
+<div class="gridContainer">
+    <div class="item-1">
+        <h5>{{ useraccount.user }}</h5>
+    </div>
+    <div class="item-2 text-center">
+        <img class="rounded-circle" src="{{ useraccount.profilePic.url }}">
+    </div>
+    <div class="item-3 row align-items-center">
+        <form method="post" action="{% url 'follow' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-primary" name="pk" value="{{ useraccount.pk }}">
+                Freund{% if friend == True %} Entfernen {% else %} Hinzufügen {% endif %}
+            </button>
+        </form>
+    </div>
+    <div class="item-4">
+        {{ friendNumber }} Freunde
+    </div>
+    <div class="item-5"">
+
+    </div>
+    <div class="item-6">
+        Bio:
+        <p>{{ useraccount.bio }}</p>
+    </div>
+    <did class="item-7">
+        Blogs:
+        <div class="list-group list-group-flush">
+            {% for blog in blogs %}
+            <a class="list-group-item list-group-item-active w-50" href="{% url 'blogdetail' blog.id %}">{{ blog.title }}</a>
+            {% endfor %}
+        </div>
+    </did>
+</div>
+
+{% endblock %}
